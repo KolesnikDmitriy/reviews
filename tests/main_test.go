@@ -36,7 +36,7 @@ func createReview(req *pb.CreateReviewRequest) (*pb.CreateReviewResponse, error)
 	return client.CreateReview(ctx, req)
 }
 
-func getRatingByItemID(req *pb.GetRatingByItemIdRequest) (*pb.GetRatingByItemIdResponse, error) {
+func getRatingByItemId(req *pb.GetRatingByItemIdRequest) (*pb.GetRatingByItemIdResponse, error) {
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 	return client.GetRatingByItemId(ctx, req)

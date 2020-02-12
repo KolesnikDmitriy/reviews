@@ -13,7 +13,7 @@ func Test_GetRatingByItemId(t *testing.T) {
 
 	req := &pb.GetRatingByItemIdRequest{}
 
-	_, err := getRatingByItemID(req)
+	_, err := getRatingByItemId(req)
 
 	require.NoError(t, err)
 }
