@@ -22,12 +22,13 @@ var (
 )
 
 func TestMain(m *testing.M) {
+	code := -1
+	defer os.Exit(code)
 	conn, _ := grpc.Dial(address, grpc.WithInsecure())
 	defer conn.Close()
 	client = pb.NewReviewsClient(conn)
 
-	code := m.Run()
-	os.Exit(code)
+	code = m.Run()
 }
 
 func createReview(req *pb.CreateReviewRequest) (*pb.CreateReviewResponse, error) {
