@@ -10,12 +10,7 @@ type ReviewsService struct {
 	pb.ReviewsServer
 }
 
-// NewReviewsService ...
-func NewReviewsService() *ReviewsService {
-	return &ReviewsService{}
-}
-
-// RegisterReviewsServer ...
-func (r *ReviewsService) RegisterReviewsServer(s *grpc.Server) {
-	pb.RegisterReviewsServer(s, r)
+// RegisterNewReviewsService ...
+func RegisterNewReviewsService(s *grpc.Server) {
+	pb.RegisterReviewsServer(s, &ReviewsService{})
 }

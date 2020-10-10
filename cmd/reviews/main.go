@@ -18,10 +18,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	s := grpc.NewServer()
-	service := app.NewReviewsService()
-	service.RegisterReviewsServer(s)
-	if err := s.Serve(lis); err != nil {
+	server := grpc.NewServer()
+	app.RegisterNewReviewsService(server)
+	if err := server.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
