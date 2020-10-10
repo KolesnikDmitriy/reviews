@@ -13,4 +13,8 @@ run:
 
 .PHONY: test
 test:
-	cd test && go test ./... -v -tags test -count=1
+	cd test && go test ./... -tags test -count=1
+
+.PHONY: local
+local: export BASE_URL=localhost:50051
+local: test
