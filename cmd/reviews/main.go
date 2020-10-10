@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/DmitriiKolesnik/reviews/internal/app"
+	"github.com/KolesnikDmitriy/reviews/internal/app"
 )
 
 const (

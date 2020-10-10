@@ -10,12 +10,12 @@ import (
 	pb "github.com/KolesnikDmitriy/reviews/pkg/api"
 )
 
-func TestCreateReview(t *testing.T) {
+func TestGetRating(t *testing.T) {
 	t.Parallel()
 
-	req := &pb.CreateReviewRequest{}
+	req := &pb.GetRatingRequest{}
 
-	_, err := client.CreateReview(ctx, req)
+	_, err := client.GetRating(ctx, req)
 
 	require.NoError(t, err)
 }

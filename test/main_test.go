@@ -1,44 +1,34 @@
-package tests
+package test
 
 import (
 	"context"
-	"os"
 	"testing"
 	"time"
 
 	"google.golang.org/grpc"
 
-	pb "github.com/KolesnikDmitriy/reviews/reviews"
+	pb "github.com/KolesnikDmitriy/reviews/pkg/api"
 )
 
 const (
 	address = "localhost:50051"
-	timeout = time.Second * 10
+	timeout = time.Second
 )
 
 var (
 	client pb.ReviewsClient
-	ctx    = context.Background()
+	ctx    context.Context
 )
 
 func TestMain(m *testing.M) {
-	code := -1
-	defer os.Exit(code)
+	ctx = context.Background()
+	var cancel context.CancelFunc
+	ctx, cancel = context.WithTimeout(ctx, timeout)
+	defer cancel()
+
 	conn, _ := grpc.Dial(address, grpc.WithInsecure())
 	defer conn.Close()
 	client = pb.NewReviewsClient(conn)
 
-	code = m.Run()
-}
-
-func createReview(req *pb.CreateReviewRequest) (*pb.CreateReviewResponse, error) {
-	ctx, cancel := context.WithTimeout(ctx, timeout)
-	defer cancel()
-	return client.CreateReview(ctx, req)
-}
-
-func getRatingByItemId(req *pb.GetRatingByItemIdRequest) (*pb.GetRatingByItemIdResponse, error) {
-	ctx, cancel := context.WithTimeout(ctx, timeout)
-	defer cancel()
-	return client.GetRatingByItemId(ctx, req)
+	m.Run()
 }
