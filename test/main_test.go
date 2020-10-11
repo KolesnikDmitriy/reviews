@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"math/rand"
 	"testing"
 	"time"
 
@@ -20,6 +21,7 @@ var (
 
 func TestMain(m *testing.M) {
 	ctx = context.Background()
+	rand.Seed(time.Now().UnixNano())
 
 	var cancel context.CancelFunc
 	ctx, cancel = context.WithTimeout(ctx, timeout)
